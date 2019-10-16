@@ -37,6 +37,11 @@ export default function App () {
             {weather && weather.main.temp}
           </h3>
           <h3 className='col-12'>
+            <img
+              src={`http://openweathermap.org/img/w/${weather &&
+                weather.weather[0].icon}.png`}
+              alt=''
+            />
             {weather && weather.weather[0].description}
           </h3>
         </div>
