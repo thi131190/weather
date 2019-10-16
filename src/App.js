@@ -7,7 +7,7 @@ export default function App () {
 
   const getData = async (lon, lat) => {
     const ID = '3241bba7e29855049993450681beda4b'
-    const URL = `http://api.openweathermap.org/data/2.5/weather?APPID=${ID}&lon=${lon}&lat=${lat}`
+    const URL = `https://api.openweathermap.org/data/2.5/weather?APPID=${ID}&lon=${lon}&lat=${lat}`
     const RES = await fetch(URL)
     const DATA = await RES.json()
     // console.log(DATA)
