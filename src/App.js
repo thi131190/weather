@@ -9,7 +9,8 @@ export default function App () {
 
   const getData = async (lon, lat) => {
     const ID = '3241bba7e29855049993450681beda4b'
-    const URL = `https://api.openweathermap.org/data/2.5/weather?APPID=${ID}&lon=${lon}&lat=${lat}`
+    const URL = `https://api.openweathermap.org/data/2.5/weather?APPID=${ID}&lon=${lon}&lat=${lat}&units=metric
+                `
     const RES = await fetch(URL)
     const DATA = await RES.json()
     // console.log(DATA)
@@ -23,7 +24,9 @@ export default function App () {
   }
 
   useEffect(() => {
-    getLocation()
+    setTimeout(() => {
+      getLocation()
+    }, 3000)
   }, [])
 
   if (isLoading) {
@@ -53,7 +56,7 @@ export default function App () {
             {weather && weather.name}
           </h2>
           <h3 className='col-12 text-danger'>
-            {weather && weather.main.temp}
+            {weather && weather.main.temp}°C
           </h3>
           <h3 className='col-12'>
             <img
