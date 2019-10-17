@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { ClipLoader } from 'react-spinners'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 
 export default function App () {
   const [weather, setWeather] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
 
   const getData = async (lon, lat) => {
     const ID = '3241bba7e29855049993450681beda4b'
@@ -12,6 +14,7 @@ export default function App () {
     const DATA = await RES.json()
     // console.log(DATA)
     setWeather(DATA)
+    setIsLoading(false)
   }
   const getLocation = () => {
     navigator.geolocation.getCurrentPosition(pos => {
@@ -22,6 +25,22 @@ export default function App () {
   useEffect(() => {
     getLocation()
   }, [])
+
+  if (isLoading) {
+    return (
+      <div
+        className='d-flex justify-content-center align-items-center'
+        style={{ height: '100vh' }}
+      >
+        <ClipLoader
+          sizeUnit={'px'}
+          size={150}
+          color={'#123abc'}
+          loading={isLoading}
+        />
+      </div>
+    )
+  }
 
   return (
     <div className='container-fluid text-white my-auto'>
